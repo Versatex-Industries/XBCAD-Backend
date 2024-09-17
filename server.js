@@ -10,10 +10,13 @@ app.use(express.json());
 const JWT_SECRET = 'your-secret-key'; // Replace with a more secure key
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/edutrack360', {
+mongoose.connect('mongodb://127.0.0.1:27017/edutrack360', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+}).then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Failed to connect to MongoDB', err));
+
+
 
 // Middleware to verify JWT tokens
 const authMiddleware = (req, res, next) => {
